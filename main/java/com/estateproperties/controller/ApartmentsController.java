@@ -23,20 +23,6 @@ public class ApartmentsController {
     @Autowired
     private ApartmentService apartmentService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "/login";
-    }
-
-
-
-//    @GetMapping(value = { "/apartments" })
-//    public String personList(Model model) {
-//
-//        model.addAttribute("apartments", apartmentService.getAllApartments(sort));
-//
-//        return "/apartments/apartmentList";
-//    }
 
     @RequestMapping(value = { "/apartments/{id}" }, method = RequestMethod.GET)
     public String getApartmentsById(Model model, @PathVariable String id) {

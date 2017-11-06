@@ -1,13 +1,5 @@
 $("#sortByName").click(function(event){
 
-    // GET REQUEST
-    // $("#sortByName").click(function(event){
-    //     event.preventDefault();
-    //     ajaxGet();
-    // });
-
-    // DO GET
-    // function ajaxGet(){
         $.ajax({
             type : "GET",
             url : "api/apartment/all?sort=name",

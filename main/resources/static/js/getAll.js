@@ -1,12 +1,5 @@
 $( document ).ready(function() {
 
-    // GET REQUEST
-    // $("#sortByName").click(function(event){
-    //     event.preventDefault();
-    //     ajaxGet();
-    // });
-
-    // DO GET
         $.ajax({
             type : "GET",
             url : "api/apartment/all?sort=name",
