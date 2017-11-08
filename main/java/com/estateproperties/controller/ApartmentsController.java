@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,7 +29,7 @@ public class ApartmentsController {
     private UserService userService;
 
 
-    @RequestMapping(value = { "/buyApartment/{id}" }, method = RequestMethod.GET)
+ @RequestMapping(value = { "/buyApartment/{id}" }, method = RequestMethod.GET)
     public ModelAndView getApartmentsById(Model model, @PathVariable String id) {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -48,5 +45,10 @@ public class ApartmentsController {
         modelAndView.addObject("apartment", apartment);
         modelAndView.setViewName("buyApartment");
         return modelAndView;
+    }
+
+    @PostMapping("/sendApplication")
+    public String buyApartment(@ModelAttribute Apartment apartment) {
+        return "result";
     }
 }

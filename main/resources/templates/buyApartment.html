@@ -27,8 +27,15 @@
 <h2 th:text="${apartment.name}">List of Seed Starters</h2>
 <h2 th:text="${apartment.description}">List of Seed Starters</h2>
 <h2 th:text="${apartment.price}">List of Seed Starters</h2>
-<button type="button" class="btn btn-primary" id="sortByName">Buy</button>
-
+<form th:action="@{/sendApplication/}" method="get">
+    <button class="btn btn-primary" name="sendApplication"
+            type="Submit">sendApplication</button>
+</form>
+<h1>Form</h1>
+<form action="#" th:action="@{/sendApplication}" th:object="${apartment}" method="post">
+    <p>Id: <input type="text" th:field="${apartment.id}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
 
 </body>
 
