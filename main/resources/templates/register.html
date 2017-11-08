@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="User account registration"/>
-    <meta name="author" content="Amir Boroumand"/>
+    <meta name="author" content="Vadim Panasiuk"/>
     <link rel="icon" href="favicon.ico"/>
 
     <title>Registration Page</title>
@@ -17,6 +17,19 @@
           rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"/>
+
+    <!--&lt;!&ndash; jQuery&ndash;&gt;-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+
+    <!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
+    <!--<script-->
+            <!--src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+            <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+            <!--crossorigin="anonymous"></script>-->
+
+    <!--&lt;!&ndash; Bootstrap Validator plugin &ndash;&gt;-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>-->
+
 
     <link th:href="@{css/style.css}" rel="stylesheet"/>
 </head>
@@ -61,8 +74,8 @@
                             <label th:if="${#fields.hasErrors('name')}"
                                    th:errors="*{name}" class="validation-message"></label>
                             <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
 
                             <input type="text" th:field="*{name}"
                                    placeholder="First Name" class="form-control" required/>
@@ -71,9 +84,9 @@
                         </div>
 
                         <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
                             <input type="text" th:field="*{lastName}"
                                    placeholder="Last Name" class="form-control" required/>
                             <span class="glyphicon form-control-feedback"
@@ -81,9 +94,9 @@
                         </div>
 
                         <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </span>
                             <input type="email" th:field="*{email}"
                                    placeholder="Email Address" class="form-control"
                                    data-error="This email address is invalid" required/>
@@ -92,9 +105,9 @@
 
                         </div>
                         <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon glyphicon-asterisk"></span>
+                            </span>
                             <input type="password" th:field="*{password}"
                                    placeholder="Password" class="form-control"
                                    data-error="This password required" required/>
@@ -112,26 +125,15 @@
                 </div>
             </div>
         </div>
-<br>
+        <br>
 
         <span th:utext="${successMessage}"></span>
-            <form th:action="@{/}" method="get">
-                <button class="btn btn-primary  full-width m-b" type="Submit">Go To Login Page</button>
-            </form>
+        <form th:action="@{/}" method="get">
+            <button class="btn btn-primary  full-width m-b" type="Submit">Go To Login Page</button>
+        </form>
     </div>
 </div>
 
-<!-- jQuery-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Bootstrap -->
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-<!-- Bootstrap Validator plugin -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
 
 </body>

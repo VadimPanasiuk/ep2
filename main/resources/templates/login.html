@@ -1,36 +1,152 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>Spring Security Tutorial</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Real Estate Directory</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <meta name="author" content="Vadim Panasiuk"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<form th:action="@{/registration}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
-	</form>	
-	
-	<div class="container">
-		<img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
-		<form th:action="@{/login}" method="POST" class="form-signin">
-			<h3 class="form-signin-heading" th:text="Welcome"></h3>
-			<br/>
-			 
-			<input type="text" id="email" name="email"  th:placeholder="Email"
-				class="form-control" /> <br/> 
-			<input type="password"  th:placeholder="Password"
-				id="password" name="password" class="form-control" /> <br /> 
-				
-			<div align="center" th:if="${param.error}">
-				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
-		</form>
-	</div>
+<body class="gray-bg">
+
+<!--<div class="middle-box text-center loginscreen animated fadeInDown">-->
+    <!--<div>-->
+        <!--<h4>New User Registration</h4>-->
+
+
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-6 col-md-offset-3">-->
+                    <!--<form th:action="@{/registration}" method="get">-->
+                        <!--<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>-->
+                    <!--</form>-->
+
+                    <!--<form autocomplete="off" action="#" th:action="@{/registration  }"-->
+                          <!--th:object="${user}" method="post" class="m-t" role="form"-->
+                          <!--data-toggle="validator">-->
+
+                        <!--<div th:if="${confirmationMessage}" class="alert alert-success"-->
+                             <!--role="alert" th:text=${confirmationMessage}></div>-->
+
+                        <!--<div th:if="${errorMessage}"-->
+                             <!--class="alert alert-danger" role="alert"-->
+                             <!--th:text="${errorMessage}"></div>-->
+
+
+                        <!--<div th:if="${#fields.hasErrors('name')}"-->
+                             <!--th:errors="*{name}"-->
+                             <!--class="validation-message alert alert-danger" role="alert"></div>-->
+
+                        <!--<div th:if="${#fields.hasErrors('lastName')}"-->
+                             <!--th:errors="*{lastName}"-->
+                             <!--class="validation-message alert alert-danger" role="alert"></div>-->
+
+                        <!--<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
+                             <!--class="validation-message alert alert-danger" role="alert"></div>-->
+
+                        <!--<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"-->
+                             <!--class="validation-message alert alert-danger" role="alert"></div>-->
+
+                        <!--<div class="form-group input-group has-feedback">-->
+                            <!--<label th:if="${#fields.hasErrors('name')}"-->
+                                   <!--th:errors="*{name}" class="validation-message"></label>-->
+                            <!--<span class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                            <!--</span>-->
+
+                            <!--<input type="text" th:field="*{name}"-->
+                                   <!--placeholder="First Name" class="form-control" required/>-->
+                            <!--<span class="glyphicon form-control-feedback"-->
+                                  <!--aria-hidden="true"></span>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group input-group has-feedback">-->
+                            <!--<span class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon-user"></span>-->
+                            <!--</span>-->
+                            <!--<input type="text" th:field="*{lastName}"-->
+                                   <!--placeholder="Last Name" class="form-control" required/>-->
+                            <!--<span class="glyphicon form-control-feedback"-->
+                                  <!--aria-hidden="true"></span>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group input-group has-feedback">-->
+                            <!--<span class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon-envelope"></span>-->
+                            <!--</span>-->
+                            <!--<input type="email" th:field="*{email}"-->
+                                   <!--placeholder="Email Address" class="form-control"-->
+                                   <!--data-error="This email address is invalid" required/>-->
+                            <!--<span class="glyphicon form-control-feedback"-->
+                                  <!--aria-hidden="true"></span>-->
+
+                        <!--</div>-->
+                        <!--<div class="form-group input-group has-feedback">-->
+                            <!--<span class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon glyphicon-asterisk"></span>-->
+                            <!--</span>-->
+                            <!--<input type="password" th:field="*{password}"-->
+                                   <!--placeholder="Password" class="form-control"-->
+                                   <!--data-error="This password required" required/>-->
+                            <!--<span class="glyphicon form-control-feedback"-->
+                                  <!--aria-hidden="true"></span>-->
+
+                        <!--</div>-->
+
+                        <!--<button type="submit"-->
+                                <!--class="btn btn-primary block full-width m-b">Register-->
+                        <!--</button>-->
+
+                    <!--</form>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<br>-->
+
+        <!--<span th:utext="${successMessage}"></span>-->
+        <!--<form th:action="@{/}" method="get">-->
+            <!--<button class="btn btn-primary  full-width m-b" type="Submit">Go To Login Page</button>-->
+        <!--</form>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+
+                    <form th:action="@{/login}" method="POST" class="form-signin">
+                        <h3 class="form-signin-heading" th:text="Login"></h3>
+                        <br/>
+
+                        <input type="text" id="email" name="email" th:placeholder="Email"
+                               class="form-control"/> <br/>
+                        <input type="password" th:placeholder="Password"
+                               id="password" name="password" class="form-control"/> <br/>
+
+                        <div align="center" th:if="${param.error}">
+                            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                        </div>
+                        <button class="btn btn-primary block full-width m-b" name="Submit" value="Login" type="Submit"
+                                th:text="Login"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <form th:action="@{/registration}" method="get">
+            <button class="btn btn-primary  full-width m-b" type="Submit">Go To Registration Page</button>
+        </form>
+
+    </div>
+</div>
+</div>
 </body>
 </html>

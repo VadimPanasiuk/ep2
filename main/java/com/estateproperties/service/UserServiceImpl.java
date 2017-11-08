@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -24,7 +26,15 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
+	@PostConstruct
+	private void initAdmin(){
+		Role admin = new Role();
+		admin.setId(1);
+		admin.setRole("ADMIN");
+		roleRepository.save(admin);
+	}
+
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);

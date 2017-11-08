@@ -14,7 +14,8 @@ $("#sortByPrice").click(function(event){
                             "</td><td>" +
                             apart.price +
                             "</td><td><a href=\"" +
-                            "#" +
+                            "/buyApartment/" +
+                            apart.id +
                             "\" class=\"btn btn-primary\">" +
                             "Buy" +
                             "</a></td></tr>";
