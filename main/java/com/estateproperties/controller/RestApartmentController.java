@@ -14,7 +14,7 @@ public class RestApartmentController {
     ApartmentServiceImpl apartmentServiceImpl;
 
     @GetMapping(value = "/all")
-    public Response getResource(@RequestParam String sort) {
-        return new Response("Done", apartmentServiceImpl.getAllApartments(sort));
+    public Response getResource(@RequestParam String sort, @RequestParam String pricefilter) {
+        return new Response("Done", apartmentServiceImpl.getApartments(sort, pricefilter));
     }
 }

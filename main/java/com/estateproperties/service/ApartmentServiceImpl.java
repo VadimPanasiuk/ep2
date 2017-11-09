@@ -2,6 +2,7 @@ package com.estateproperties.service;
 
 import com.estateproperties.model.Apartment;
 import com.estateproperties.repository.ApartmentRepo;
+import com.estateproperties.service.utility.SortType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,21 +30,57 @@ public class ApartmentServiceImpl implements ApartmentService {
         }
     }
 
-    public List<Apartment> getAllApartments(String sort) {
+    public Apartment getApartment(int id) {
+        return apartmentRepository.findOne(id);
+    }
 
+    public List<Apartment> getApartments(String sort, String pricefilter) {
+        SortType sortType = SortType.valueOf(sort.toUpperCase());
+        int priceInt = Integer.parseInt(pricefilter);
+        List<Apartment> apartments = new ArrayList();
 
+        switch (sortType) {
+            case NAME_SORT:
+            case PRICE_SORT:
+                apartments = getSortedApartments(sortType);
+                break;
+            case PRICE_LESS_FILTER:
+                apartments = getSortedApartments(sortType, priceInt);
+                break;
+        }
+
+        return apartments;
+    }
+
+    private List<Apartment> getSortedApartments(SortType sortType) {
         List<Apartment> allApartments = new ArrayList();
         apartmentRepository.findAll().forEach(allApartments::add);
-        if(sort.equals("name")){
-            allApartments = allApartments.stream().sorted(Comparator.comparing(Apartment::getName)).collect(Collectors.toList());
-        } else
-            if(sort.equals("price")) {
-                allApartments = allApartments.stream().sorted(Comparator.comparingInt(Apartment::getPrice)).collect(Collectors.toList());
-            }
+        switch (sortType) {
+            case NAME_SORT:
+                allApartments = allApartments.stream()
+                        .sorted(Comparator.comparing(Apartment::getName))
+                        .collect(Collectors.toList());
+                break;
+            case PRICE_SORT:
+                allApartments = allApartments.stream()
+                        .sorted(Comparator.comparingInt(Apartment::getPrice))
+                        .collect(Collectors.toList());
+                break;
+        }
         return allApartments;
     }
 
-    public Apartment getApartment(int id) {
-        return apartmentRepository.findOne(id);
+    private List<Apartment> getSortedApartments(SortType sortType, int priceInt) {
+        List<Apartment> allApartments = new ArrayList();
+        //todo: refactoring with Querydsl
+        apartmentRepository.findAll().forEach(allApartments::add);
+        switch (sortType) {
+            case PRICE_LESS_FILTER:
+                allApartments = allApartments.stream()
+                        .filter((a) -> (a.getPrice() < priceInt))
+                        .collect(Collectors.toList());
+                break;
+        }
+        return allApartments;
     }
 }
