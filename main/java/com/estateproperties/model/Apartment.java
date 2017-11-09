@@ -1,32 +1,36 @@
 package com.estateproperties.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "apartment")
 public class Apartment {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="apartment_id")
+    private int id;
+    @Column(name="name")
     private String name;
+    @Column(name="description")
     private String description;
+    @Column(name="price")
     private int price;
 
     public Apartment() {
     }
 
-    public Apartment(String id, String name, String description, int price) {
-        this.id = id;
+    public Apartment( String name, String description, int price) {
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

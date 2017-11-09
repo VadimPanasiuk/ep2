@@ -6,44 +6,39 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="User account registration"/>
-    <meta name="author" content="Vadim Panasiuk"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta name="author" content="vadim.panasiuk@gmail.com"/>
 
-    <title>Registration Page</title>
+    <title>Real Estate Directory</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"/>
+    <style>
+        body {
+            padding-top: 54px;
+            margin-top: 2%
+        }
 
-    <!--&lt;!&ndash; jQuery&ndash;&gt;-->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
 
-    <!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
-    <!--<script-->
-            <!--src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
-            <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
-            <!--crossorigin="anonymous"></script>-->
-
-    <!--&lt;!&ndash; Bootstrap Validator plugin &ndash;&gt;-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>-->
-
-
-    <link th:href="@{css/style.css}" rel="stylesheet"/>
+    </style>
 </head>
 
 <body class="gray-bg">
 
-<div class="middle-box text-center loginscreen animated fadeInDown">
+<div class="middle-box loginscreen animated fadeInDown">
     <div>
-        <h4>New User Registration</h4>
-
 
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
+
+                    <h3>New User Registration</h3>
                     <form autocomplete="off" action="#" th:action="@{/registration  }"
                           th:object="${user}" method="post" class="m-t" role="form"
                           data-toggle="validator">
@@ -122,19 +117,18 @@
 
                     </form>
 
+                    <span th:utext="${successMessage}"></span>
+                    <br>
+                    <form th:action="@{/}" method="get">
+                        <button class="btn btn-primary  full-width m-b" type="Submit">Go To Login Page</button>
+                    </form>
                 </div>
             </div>
         </div>
         <br>
 
-        <span th:utext="${successMessage}"></span>
-        <form th:action="@{/}" method="get">
-            <button class="btn btn-primary  full-width m-b" type="Submit">Go To Login Page</button>
-        </form>
     </div>
 </div>
-
-
 
 </body>
 

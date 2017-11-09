@@ -6,11 +6,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="User account registration"/>
-    <meta name="author" content="Vadim Panasiuk"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta name="author" content="vadim.panasiuk@gmail.com"/>
 
-    <title>Registration Page</title>
+    <title>Apartment detail</title>
 
     <!-- Bootstrap core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -18,25 +16,50 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"/>
 
+    <style>
+        body {
+            padding-top: 54px;
+            margin-top: 2%
+        }
 
-    <link th:href="@{css/style.css}" rel="stylesheet"/>
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+
+    </style>
 </head>
 
 <body class="gray-bg">
-<h1>Buy Appartment</h1>
-<h2 th:text="${apartment.name}">List of Seed Starters</h2>
-<h2 th:text="${apartment.description}">List of Seed Starters</h2>
-<h2 th:text="${apartment.price}">List of Seed Starters</h2>
-<form th:action="@{/sendApplication/}" method="get">
-    <button class="btn btn-primary" name="sendApplication"
-            type="Submit">sendApplication</button>
-</form>
-<h1>Form</h1>
-<form action="#" th:action="@{/sendApplication}" th:object="${apartment}" method="post">
-    <p>Id: <input type="text" th:field="${apartment.id}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
 
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Apartment details</h4>
+            <h2 th:text="${apartment.name}"></h2>
+            <h4>Description:</h4>
+            <h2 th:text="${apartment.description}"></h2>
+            <h4>Price:</h4>
+            <h2 th:text="${apartment.price}"></h2>
+            <form th:action="@{/buyApartment/sendApplication/{id}(id=${apartment.id})}" method="post">
+
+                <div th:if="${confirmationMessage}" class="alert alert-success"
+                     role="alert" th:text=${confirmationMessage}></div>
+
+                <button class="btn btn-primary" name="Send application"
+                        type="Submit">Contact the seller
+                </button>
+            </form>
+            <br>
+
+            <form th:action="@{/}" method="get">
+                <button class="btn btn-primary  full-width m-b" type="submit">To apartment list</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
