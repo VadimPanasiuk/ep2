@@ -7,6 +7,8 @@ import com.estateproperties.model.Role;
 import com.estateproperties.model.User;
 import com.estateproperties.repository.RoleRepository;
 import com.estateproperties.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +19,8 @@ import javax.annotation.PostConstruct;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
+
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
 	@Qualifier("userRepository")
 	@Autowired
@@ -46,7 +50,10 @@ public class UserServiceImpl implements UserService{
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		LOG.info(String.format("User saving: [%s]", user));
 		userRepository.save(user);
+		LOG.info(String.format("User saved: [%s]", user));
+
 	}
 
 }

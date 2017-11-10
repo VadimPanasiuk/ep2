@@ -52,3 +52,8 @@ $(document).ready(function () {
         )
     }
 )
+
+// Sorting table
+// $(document).ready( function () {
+//     var table = $('#apartmentTable').DataTable();
+// } );
